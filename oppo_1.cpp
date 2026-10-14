@@ -9,6 +9,12 @@ string readinput(const string& prompt){
     return input;
 }
 
+void printpassage(const string& date, const string& carNumber) {
+    cout << "\nФиксация проезда:\n";
+    cout << "Дата: " << date << "\n";
+    cout << "Номер автомобиля: " << carNumber << "\n";
+}
+
 int main() {
     string date, carNumber;
     setlocale(LC_ALL, "Russian");
@@ -19,9 +25,7 @@ int main() {
     cout << "Введите номер автомобиля: ";
     getline(cin, carNumber);
 
-    cout << "\nФиксация проезда:\n";
-    cout << "Дата: " << date << "\n";
-    cout << "Номер автомобиля: " << carNumber << "\n";
-
+    printpassage(date, carNumber);
+    
     return 0;       
 }
