@@ -2,6 +2,13 @@
 #include <string>
 using namespace std;
 
+string readinput(const string& prompt){
+    cout << promt;
+    string input;
+    getline(cin, input);
+    return input;
+}
+
 int main() {
     string date, carNumber;
     setlocale(LC_ALL, "Russian");
