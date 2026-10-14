@@ -2,30 +2,48 @@
 #include <string>
 using namespace std;
 
-string readinput(const string& prompt){
-    cout << promt;
-    string input;
-    getline(cin, input);
-    return input;
-}
+class Passage {
+public:
+    string readinput(const string& prompt) {
+        cout << prompt;
+        string input;
+        getline(cin, input);
+        return input;
+    }
 
-void printpassage(const string& date, const string& carNumber) {
-    cout << "\nФиксация проезда:\n";
-    cout << "Дата: " << date << "\n";
-    cout << "Номер автомобиля: " << carNumber << "\n";
-}
+    void printpassage(const string& date, const string& car_number) {
+        cout << "\nФиксация проезда:\n";
+        cout << "Дата: " << date << "\n";
+        cout << "Номер автомобиля: " << car_number << "\n";
+    }
+
+    bool validateDate(const string& date) {
+        if (date.size() != 10) return false;
+        if (date[4] != '.' || date[7] != '.') return false;
+        return true;
+    }
+
+    bool validateCarNumber(const string& car_number) {
+        return !car_number.empty();
+    }
+};
 
 int main() {
-    string date, carNumber;
     setlocale(LC_ALL, "Russian");
+    Passage p;
 
-    cout << "Введите дату (формат гггг.мм.дд): ";
-    getline(cin, date);
+    string date = p.readinput("Введите дату (формат гггг.мм.дд): ");
+    string carNumber = p.readinput("Введите номер автомобиля: ");
 
-    cout << "Введите номер автомобиля: ";
-    getline(cin, carNumber);
+    if (!p.validateDate(date)) {
+        cout << "Ошибка: неверный формат даты\n";
+        return 1;
+    }
+    if (!p.validateCarNumber(carNumber)) {
+        cout << "Ошибка: номер не может быть пустым\n";
+        return 1;
+    }
 
-    printpassage(date, carNumber);
-    
-    return 0;       
+    p.printpassage(date, carNumber);
+    return 0;    
 }
